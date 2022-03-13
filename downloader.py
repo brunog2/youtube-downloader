@@ -1,3 +1,4 @@
+from fileinput import filename
 import pytube
 from pytube import YouTube
 from pytube import Playlist
@@ -6,10 +7,16 @@ import moviepy.editor as mp
 import re
 
 def dlVideo(folder, url):
-    print("o folder:", folder)
     video = YouTube(url)
-    title = formatTitle(video.title)
-    video.streams.filter(only_audio=True).first().download("C:/Users/Efrain/Music/Catedral")
+    print("Baixando:", video.title)
+    title = formatTitle(video.title)+".mp4"
+    if not os.path.exists("C:/Users/Bruno/Music/{}/{}".format(folder, title)):
+        try:
+            video.streams.filter(only_audio=True).first().download("C:/Users/Bruno/Music/{}".format(folder), filename=title)
+        except:
+            print("Não foi possível baixar o arquivo")
+    else:
+        print("Arquivo já existente... Pulando")
   
 def formatTitle(name):
     chars = ["|", "'\'", "/", "<", ">", ":", "*", "?", '"', "'", '.', "-"]
