@@ -5,7 +5,7 @@ import os
 import moviepy.editor as mp
 import re
 
-direc = "C:/Users/Efrain/Music/"
+direc = "C:/Users/Bruno/Music/"
 all = os.walk(direc)
 
 for dirpath, folders, filename in all:    
@@ -13,7 +13,7 @@ for dirpath, folders, filename in all:
 
     for folder in folders:
         folderMusic = folder
-        folder = "C:/Users/Efrain/Music/{}".format(folder)
+        folder = "C:/Users/Bruno/Music/{}".format(folder)
         print(folder)
         for file in os.listdir(folder):
             type = "mp4"
